@@ -1,3 +1,5 @@
+> Update, 10 November 2026: the owner explicitly approved making the repository public and publishing the prepared release. Earlier private-review restrictions below describe the prior review stage and are superseded for this release.
+
 # Private review delivery and publication gates
 
 Approved repository: `Beckleytobi/boteco-engineering-skills`, PRIVATE.

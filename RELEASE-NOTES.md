@@ -1,6 +1,6 @@
 # Boteco Engineering Skills — FR4 Claude-tested licensed-r1
 
-Draft prerelease for review. Proposed tag: `fr4-claude-tested-licensed-r1`.
+Public prerelease. Tag: `fr4-claude-tested-licensed-r1`.
 
 Includes nine skill folders: eight coordinated FR4 engineering skills plus unchanged Regression Protection V2. Adds the reusable feature-start template, Codex setup guide, tested Claude Code CLI guide, portable trial results and synthetic fixtures, MIT license and attribution.
 

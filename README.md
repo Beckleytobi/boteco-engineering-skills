@@ -2,11 +2,11 @@
 
 A coordinated engineering workflow for requirements, HLD, LLD, implementation verification and controlled delivery, usable with Codex and Claude Code.
 
-**Local release candidate: FR4 Claude-tested licensed-r1.** Private review repository: `Beckleytobi/boteco-engineering-skills`. The release is a draft and is not publicly published.
+**FR4 Claude-tested licensed-r1.** Public repository: `Beckleytobi/boteco-engineering-skills`. Fork this repository to adapt the skills under the MIT license.
 
 ## Download and start
 
-Authorized reviewers can use the attached Boteco ZIP and SHA256SUMS.txt in the repository's draft Releases section. Public access is not enabled. GitHub's automatic source archive contains the full repository; the curated Boteco ZIP contains just the portable bundle.
+Download the Boteco ZIP and SHA256SUMS.txt from the [release page](https://github.com/Beckleytobi/boteco-engineering-skills/releases/tag/fr4-claude-tested-licensed-r1). GitHub's automatic source archive contains the full repository; the curated Boteco ZIP contains just the portable bundle.
 
 1. Extract the curated ZIP outside agent skill-discovery folders.
 2. Run `python -B verify_bundle.py` inside it.

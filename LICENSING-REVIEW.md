@@ -1,3 +1,5 @@
+> Update, 10 November 2026: the owner explicitly approved making the repository public and publishing the prepared release. Earlier private-review restrictions below describe the prior review stage and are superseded for this release.
+
 # Licensing review — 10 November 2026
 
 **Prepared license: MIT. Copyright holder: Tobi Beckley.** The owner explicitly confirmed that they created the original packages and selected these terms. LICENSE is included both in the repository and downloadable payload.
