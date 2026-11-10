@@ -1,0 +1,79 @@
+{
+  "date": "2026-11-10",
+  "status": "PASS_WITHIN_ISOLATED_SCOPE",
+  "host": "Claude Code CLI",
+  "host_version": "2.1.148",
+  "model": "claude-sonnet-4-6",
+  "effort": "medium",
+  "python": "3.14.0",
+  "skill_files": 136,
+  "skill_bytes_changed": false,
+  "runs": [
+    {
+      "id": "normal-independent-suite",
+      "exit_code": 0,
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "output": "test_cancel_collected_raises (test_cancel.CancelBehaviour.test_cancel_collected_raises) ... ok\ntest_cancel_missing_oid (test_cancel.CancelBehaviour.test_cancel_missing_oid) ... ok\ntest_cancel_releases_stock (test_cancel.CancelBehaviour.test_cancel_releases_stock) ... ok\ntest_cancel_repeat_no_error (test_cancel.CancelBehaviour.test_cancel_repeat_no_error) ... ok\ntest_cancel_state_and_copy (test_cancel.CancelBehaviour.test_cancel_state_and_copy) ... ok\ntest_cancel_wrong_identity_after_cancel (test_cancel.CancelBehaviour.test_cancel_wrong_identity_after_cancel) ... ok\ntest_cancel_wrong_owner (test_cancel.CancelBehaviour.test_cancel_wrong_owner) ... ok\ntest_cancel_wrong_tenant (test_cancel.CancelBehaviour.test_cancel_wrong_tenant) ... ok\ntest_collect_after_cancel_raises (test_cancel.CancelBehaviour.test_collect_after_cancel_raises) ... ok\ntest_hold_after_cancel_restoration (test_cancel.CancelBehaviour.test_hold_after_cancel_restoration) ... ok\ntest_inventory_conservation (test_cancel.CancelBehaviour.test_inventory_conservation) ... ok\ntest_no_mutation_on_collected_denial (test_cancel.CancelBehaviour.test_no_mutation_on_collected_denial) ... ok\ntest_no_mutation_on_permission_denial (test_cancel.CancelBehaviour.test_no_mutation_on_permission_denial) ... ok\ntest_returned_copy_no_mutation (test_cancel.CancelBehaviour.test_returned_copy_no_mutation) ... ok\ntest_collection (test_existing.ExistingBehaviour.test_collection) ... ok\ntest_cross_owner_denied (test_existing.ExistingBehaviour.test_cross_owner_denied) ... ok\ntest_cross_tenant_denied (test_existing.ExistingBehaviour.test_cross_tenant_denied) ... ok\ntest_hold_reduces_stock (test_existing.ExistingBehaviour.test_hold_reduces_stock) ... ok\ntest_invalid_quantities (test_existing.ExistingBehaviour.test_invalid_quantities) ... ok\ntest_view_is_copy (test_existing.ExistingBehaviour.test_view_is_copy) ... ok\n\n----------------------------------------------------------------------\nRan 20 tests in 0.007s\n\nOK\n"
+    },
+    {
+      "id": "omission-independent-suite",
+      "exit_code": 0,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "output": "test_label_exists (test_existing.Existing.test_label_exists) ... ok\ntest_label_exact (test_label_exact.ExactLabel.test_label_exact) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.002s\n\nOK\n"
+    },
+    {
+      "id": "normal-independent-acceptance",
+      "exit_code": 0,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "output": "test_ac1_detached_lowercase_result (__main__.Acceptance.test_ac1_detached_lowercase_result) ... ok\ntest_ac2_exact_stock_restoration (__main__.Acceptance.test_ac2_exact_stock_restoration) ... ok\ntest_ac3_repeated_result_without_release (__main__.Acceptance.test_ac3_repeated_result_without_release) ... ok\ntest_ac4_ac5_identity_before_state_and_no_mutation (__main__.Acceptance.test_ac4_ac5_identity_before_state_and_no_mutation) ... ok\ntest_ac6_collected_rejected_unchanged (__main__.Acceptance.test_ac6_collected_rejected_unchanged) ... ok\ntest_ac7_missing_unchanged (__main__.Acceptance.test_ac7_missing_unchanged) ... ok\ntest_indirect_future_hold_and_mixed_conservation (__main__.Acceptance.test_indirect_future_hold_and_mixed_conservation) ... ok\ntest_preserve_cancel_then_collect (__main__.Acceptance.test_preserve_cancel_then_collect) ... ok\ntest_preserve_existing_copy_and_invalid_hold (__main__.Acceptance.test_preserve_existing_copy_and_invalid_hold) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 0.007s\n\nOK\n"
+    }
+  ],
+  "material_gate_checks": [
+    {
+      "case": "draft",
+      "errors": [],
+      "expected_rejection": false,
+      "passed": true
+    },
+    {
+      "case": "ready",
+      "errors": [
+        "Design handoff invalid: Approved governing baseline required for READY"
+      ],
+      "expected_rejection": true,
+      "passed": true
+    },
+    {
+      "case": "pending baseline structural validity only",
+      "exit_code": 0,
+      "output": "PASS: requirements baseline structure is valid\n",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Synthetic sequential in-memory fixtures only; no production authentication, persistence, concurrent execution, load, deployment or operational-readiness assurance.",
+    "Approval was supplied as a version/hash-bound overlay to immutable reviewed drafts; native READY metadata promotion was not tested in the positive cases.",
+    "Claude Code CLI tested, not Claude Desktop; one execution per scenario, not a reliability benchmark."
+  ],
+  "material": {
+    "baseline_id": "CANARY-CANCEL",
+    "version": 2,
+    "hash": "a7dfc1903ba8edfcbf9b245b5b0873b1f2261eb3699694aece6992cc8bcf82ff",
+    "validation_state": "NEEDS DECISION",
+    "approval_state": "APPROVAL REQUIRED",
+    "implementation_allowed": false,
+    "implementation_changed": false,
+    "downstream_states": {
+      "LLD-CANCEL-v1": "INVALIDATED",
+      "EVD-REG-v1": "INVALIDATED",
+      "HELP-UNKNOWN": "STALE",
+      "LOCAL-BOUNDARY-v1": "STALE"
+    }
+  }
+}

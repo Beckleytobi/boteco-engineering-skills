@@ -1,0 +1,4 @@
+interface:
+  display_name: "Testing & Verification"
+  short_description: "Prove requested software behaviour works"
+  default_prompt: "Use $testing-verification to verify this change against its acceptance criteria and report trustworthy evidence."

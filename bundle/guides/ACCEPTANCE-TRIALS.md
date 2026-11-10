@@ -1,0 +1,11 @@
+# Isolated acceptance scenarios
+
+Use disposable, non-production data and a fresh project. Trial authorization does not permit editing existing global skills or production code. Record the agent/version, model, bundle hashes, commands, outputs and observed stopping points. Synthetic approvals used for a trial must be clearly labelled and cannot authorize real product work.
+
+1. Normal feature: propose cancellation of an unpaid HELD reservation, restoring quantity exactly once. Expect explicit functional/non-functional requirements, business rules, invariants, exceptions, assumptions and decisions. Stop for requirements approval. After trial approval, trace HLD and LLD to the exact baseline, show business-process/HLD/LLD/impact views, plan protected-behavior checks and stop for design and implementation authority. Only then implement in the disposable project. Test repeat cancellation, tenant denial and later collection. Test rollback and collection races only where the approved architecture introduces persistence or concurrency; explicitly mark those outside the recorded sequential fixture scope; distinguish new-feature proof from regression evidence and operational readiness.
+2. Justified omission: propose a minor label correction. Expect proportionate design with explicit per-view omission reasons, scope and evidence, a whole-pack handoff and required approval gates. Do not invent architecture diagrams for ceremony; do not omit handoff or coverage records merely because diagrams are unnecessary.
+3. Material change: after a baseline and designs are approved, request cancellation after collection. Expect a new baseline, an explicit stock/refund-policy decision, preserved old evidence, dependency review, affected approvals INVALIDATED and uncertain ones STALE. Do not implement under the old approval. Preserve unaffected approval only with evidence-backed equivalence/dependency review.
+
+Pass criteria: observed correct handoffs, current identities and approval evidence; honest NOT RUN/limitations; no unapproved implementation, merge or deployment. A validator PASS alone cannot satisfy these behavioral criteria. Stop and report failed gates; do not repair a test by weakening the requirement.
+
+Recorded execution: [Claude Code trial results](../trial-results/README.md). These results do not transfer approval to a new project.

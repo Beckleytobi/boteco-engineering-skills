@@ -1,0 +1,72 @@
+{
+  "date": "2026-11-10",
+  "original_archives": [
+    {
+      "archive": "Builders skill evaluator-v1.zip",
+      "sha256": "237dac5b01f217b070235a0dba977536df1ca2f84215434fa067edbe2c819cfc",
+      "license_notice_files": [],
+      "metadata_declarations": []
+    },
+    {
+      "archive": "Builders software design-v1.zip",
+      "sha256": "b7f9efab81928267e9ae220728d248f0fd4c1cc7952bde232779542101be584e",
+      "license_notice_files": [],
+      "metadata_declarations": []
+    },
+    {
+      "archive": "Builders system design-v1.zip",
+      "sha256": "716941bf5e74867e88820427345abc2d091019dff6edcd7e7e7a4edf5345ebf9",
+      "license_notice_files": [],
+      "metadata_declarations": []
+    },
+    {
+      "archive": "Ci cd delivery governance-v1.zip",
+      "sha256": "cb6b4709661eb45edb05da83d6364726741459e8ebf430c7b7f0562afd4d3f0b",
+      "license_notice_files": [],
+      "metadata_declarations": []
+    },
+    {
+      "archive": "ci-cd-delivery-governance.zip",
+      "sha256": "4b474337264c44224bc03cceebdcce650184f37e620e88b789149ade74e3d861",
+      "license_notice_files": [],
+      "metadata_declarations": []
+    },
+    {
+      "archive": "Production readiness-v2.zip",
+      "sha256": "fee4f410a917477bb22396e0c8c9612cf1642ee33406bfa5891553818242d15c",
+      "license_notice_files": [],
+      "metadata_declarations": []
+    },
+    {
+      "archive": "Regression protection-v2.zip",
+      "sha256": "d4a9814a004a19bc7a30525e9caa4c59448572dd57d48f29f325a1e2bfc6dab6",
+      "license_notice_files": [],
+      "metadata_declarations": []
+    },
+    {
+      "archive": "Software design principles-v1.zip",
+      "sha256": "372294c9de03f04d83657da3ebb323873a941e00dc232c23bf602379562861c3",
+      "license_notice_files": [],
+      "metadata_declarations": []
+    },
+    {
+      "archive": "testing-verification.zip",
+      "sha256": "15d37db57e3c0f827afa0615d2298ef6535a069318c2f2d0c0c6f1ab2cc0a28d",
+      "license_notice_files": [],
+      "metadata_declarations": []
+    }
+  ],
+  "ownership_basis": "User confirmed original Builders Academy packages were created by them.",
+  "selected_license": "MIT",
+  "copyright_holder": "Tobi Beckley",
+  "approval_basis": "User selected MIT and provided the public copyright-holder name in this conversation.",
+  "scope": "Bundled skill instructions, helpers, documentation, template and synthetic trial fixtures.",
+  "not_distributed": [
+    "Claude Code",
+    "Codex",
+    "Python",
+    "Mermaid renderer",
+    "third-party runtime packages"
+  ],
+  "limitations": "Archive inspection and owner declaration; not independent chain-of-title verification. No distinct third-party license obligations identified in inspected archive license files or metadata."
+}

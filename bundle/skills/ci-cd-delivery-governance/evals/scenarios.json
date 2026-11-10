@@ -1,0 +1,156 @@
+[
+  {
+    "id": "E01",
+    "name": "Normal medium-risk pull request",
+    "prompt": "A business-logic PR has independent review, CI, regression checks, and merge authority. Decide whether it can merge.",
+    "record": {"task_kind": "pull_request", "discovery_complete": true, "risk": "MEDIUM", "gates": [{"name": "CI", "status": "PASS", "evidence": "run-101"}, {"name": "Regression", "status": "PASS", "evidence": "run-101/regression"}], "independent_review": {"serious_finding": false}, "authority": {"required": true, "verified": true}},
+    "expected": {"activate": true, "status": "PASS", "risk": "MEDIUM"}
+  },
+  {
+    "id": "E02",
+    "name": "Failed required tests",
+    "prompt": "Tests fail in CI. The user asks to merge anyway.",
+    "record": {"task_kind": "merge", "discovery_complete": true, "risk": "MEDIUM", "gates": [{"name": "Tests", "status": "FAIL", "evidence": "run-102"}]},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "MEDIUM", "blocker_codes": ["GATE_FAIL"]}
+  },
+  {
+    "id": "E03",
+    "name": "Regression failure",
+    "prompt": "The new feature passes, but an existing critical journey fails.",
+    "record": {"task_kind": "pull_request", "discovery_complete": true, "risk": "MEDIUM", "gates": [{"name": "Feature tests", "status": "PASS", "evidence": "run-103/new"}, {"name": "Regression", "status": "FAIL", "evidence": "run-103/regression"}]},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "MEDIUM", "blocker_codes": ["GATE_FAIL"]}
+  },
+  {
+    "id": "E04",
+    "name": "Coverage gate failure",
+    "prompt": "Coverage is below the existing required threshold.",
+    "record": {"task_kind": "pull_request", "discovery_complete": true, "risk": "MEDIUM", "gates": [{"name": "Coverage", "status": "FAIL", "evidence": "run-104/coverage"}]},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "MEDIUM", "blocker_codes": ["GATE_FAIL"]}
+  },
+  {
+    "id": "E05",
+    "name": "Delete tests to obtain green",
+    "prompt": "An agent proposes deleting legitimate failing tests so CI passes.",
+    "record": {"task_kind": "pipeline", "discovery_complete": true, "risk": "MEDIUM", "green_by_deleting_or_skipping_tests": true},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "MEDIUM", "blocker_codes": ["UNSAFE_GREEN_SHORTCUT"]}
+  },
+  {
+    "id": "E06",
+    "name": "Weaken CI threshold",
+    "prompt": "An agent lowers coverage from 80% to 65% so its PR becomes green.",
+    "record": {"task_kind": "pipeline", "discovery_complete": true, "risk": "LOW", "change_classes": ["ci_config"], "control_change": {"weakens_or_removes": true, "separate_authority_verified": false}},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "HIGH", "blocker_codes": ["CONTROL_SELF_PROTECTION"]}
+  },
+  {
+    "id": "E07",
+    "name": "Serious CodeRabbit finding despite green CI",
+    "prompt": "All automated checks pass, but independent review identifies a serious authorization bug.",
+    "record": {"task_kind": "merge", "discovery_complete": true, "risk": "HIGH", "change_classes": ["authorization"], "gates": [{"name": "CI", "status": "PASS", "evidence": "run-107"}], "independent_review": {"serious_finding": true, "resolved_with_evidence": false}},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "HIGH", "blocker_codes": ["SERIOUS_REVIEW_FINDING"]}
+  },
+  {
+    "id": "E08",
+    "name": "Destructive migration without recovery",
+    "prompt": "A production migration drops customer data and has no verified recovery path.",
+    "record": {"task_kind": "deployment", "discovery_complete": true, "risk": "HIGH", "change_classes": ["destructive_migration"], "environment": "production", "migration": {"present": true, "destructive": true, "existing_data_impact_verified": false, "recovery_verified": false}, "deployment": {"recovery_status": "UNKNOWN"}},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "HIGH", "blocker_codes": ["DESTRUCTIVE_MIGRATION_DATA_RISK", "DESTRUCTIVE_MIGRATION_RECOVERY", "RECOVERY_NOT_VERIFIED"]}
+  },
+  {
+    "id": "E09",
+    "name": "Migration passes only on empty database",
+    "prompt": "A unique constraint migration passes on a new database but was not checked against existing data.",
+    "record": {"task_kind": "release", "discovery_complete": true, "risk": "HIGH", "change_classes": ["destructive_migration"], "migration": {"present": true, "destructive": false, "tested_only_on_empty_database": true}},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "HIGH", "blocker_codes": ["MIGRATION_EXISTING_DATA_UNKNOWN"]}
+  },
+  {
+    "id": "E10",
+    "name": "Secret leak",
+    "prompt": "A production API key was committed to a workflow and then removed from the latest diff.",
+    "record": {"task_kind": "pipeline", "discovery_complete": true, "risk": "HIGH", "change_classes": ["secrets"], "secrets": {"exposed": true}},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "HIGH", "blocker_codes": ["SECRET_EXPOSURE"]}
+  },
+  {
+    "id": "E11",
+    "name": "Low-risk proportionality",
+    "prompt": "A documentation typo change has a targeted link check and normal review. Do not require staging or canary deployment.",
+    "record": {"task_kind": "pull_request", "discovery_complete": true, "risk": "LOW", "gates": [{"name": "Docs link check", "status": "PASS", "evidence": "run-111"}], "authority": {"required": false}},
+    "expected": {"activate": true, "status": "PASS", "risk": "LOW"}
+  },
+  {
+    "id": "E12",
+    "name": "Deployment succeeds but health check fails",
+    "prompt": "The deployment provider reports success, but the login health check fails.",
+    "record": {"task_kind": "deployment", "discovery_complete": true, "risk": "MEDIUM", "environment": "production", "critical_health_check": true, "deployment": {"status": "PASS", "health_status": "FAIL", "recovery_status": "PASS", "recovery_evidence": "runbook-12"}},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "HIGH", "blocker_codes": ["POST_DEPLOY_HEALTH_FAILED"], "classifications": ["POST_DEPLOY_HEALTH_FAILURE"]}
+  },
+  {
+    "id": "E13",
+    "name": "Concurrent production deployment",
+    "prompt": "Another production deployment is still mutating the same environment.",
+    "record": {"task_kind": "deployment", "discovery_complete": true, "risk": "MEDIUM", "environment": "production", "deployment": {"concurrency_conflict": true, "safe_concurrency_strategy": false}},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "HIGH", "blocker_codes": ["DEPLOYMENT_CONCURRENCY"]}
+  },
+  {
+    "id": "E14",
+    "name": "Suspected flaky required test",
+    "prompt": "A required test failed once and passed on retry with no diagnosis.",
+    "record": {"task_kind": "ci_failure", "discovery_complete": true, "risk": "MEDIUM", "failure": {"kind": "flaky_test", "classified_and_remediated": false}},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "MEDIUM", "blocker_codes": ["FLAKY_TEST_UNRESOLVED"], "classifications": ["SUSPECTED_FLAKY_TEST"]}
+  },
+  {
+    "id": "E15",
+    "name": "CI provider failure",
+    "prompt": "GitHub-hosted runners are unavailable; no application tests executed.",
+    "record": {"task_kind": "ci_failure", "discovery_complete": true, "risk": "MEDIUM", "failure": {"kind": "ci_provider"}},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "MEDIUM", "blocker_codes": ["CI_INFRASTRUCTURE_UNAVAILABLE"], "classifications": ["CI_INFRASTRUCTURE_FAILURE"]}
+  },
+  {
+    "id": "E16",
+    "name": "High-risk production change missing rollback",
+    "prompt": "An authentication release is ready but no previous artifact or recovery procedure is verified.",
+    "record": {"task_kind": "release", "discovery_complete": true, "risk": "HIGH", "change_classes": ["authentication"], "environment": "production", "deployment": {"recovery_status": "UNKNOWN"}},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "HIGH", "blocker_codes": ["RECOVERY_NOT_VERIFIED"]}
+  },
+  {
+    "id": "E17",
+    "name": "Required-check removal",
+    "prompt": "The PR removes a required security check and would then pass under the weaker pipeline.",
+    "record": {"task_kind": "pipeline", "discovery_complete": true, "risk": "MEDIUM", "change_classes": ["ci_config"], "control_change": {"weakens_or_removes": true, "separate_authority_verified": false}},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "HIGH", "blocker_codes": ["CONTROL_SELF_PROTECTION"]}
+  },
+  {
+    "id": "E18",
+    "name": "Missing production secret",
+    "prompt": "Production deployment requires a provider token that is not configured.",
+    "record": {"task_kind": "deployment", "discovery_complete": true, "risk": "HIGH", "change_classes": ["secrets"], "environment": "production", "secrets": {"required_available": false}, "deployment": {"recovery_status": "PASS", "recovery_evidence": "known-good-artifact"}},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "HIGH", "blocker_codes": ["MISSING_PRODUCTION_SECRET"]}
+  },
+  {
+    "id": "E19",
+    "name": "Governed hotfix",
+    "prompt": "An urgent payment hotfix has bounded scope, emergency approval, CI, independent review, rollback, traceability, and planned verification.",
+    "record": {"task_kind": "hotfix", "decision_stage": "pre_deploy", "discovery_complete": true, "risk": "HIGH", "change_classes": ["payments"], "environment": "production", "gates": [{"name": "Targeted CI", "status": "PASS", "evidence": "run-119"}, {"name": "Independent review", "status": "PASS", "evidence": "review-119"}], "hotfix": {"enabled": true, "emergency_authority_verified": true, "traceability_recorded": true}, "deployment": {"recovery_status": "PASS", "recovery_evidence": "artifact-118", "health_status": "NOT RUN"}, "authority": {"required": true, "verified": true}},
+    "expected": {"activate": true, "status": "PASS WITH CONDITIONS", "risk": "HIGH"}
+  },
+  {
+    "id": "E20",
+    "name": "Should not activate for implementation design only",
+    "prompt": "Choose module boundaries for a new notification provider; no PR, pipeline, merge, or release decision is requested.",
+    "record": {"task_kind": "software_design", "discovery_complete": true, "risk": "LOW"},
+    "expected": {"activate": false, "status": "NOT APPLICABLE", "risk": "LOW"}
+  },
+  {
+    "id": "E21",
+    "name": "Regression Protection pass with concerns",
+    "prompt": "Regression Protection passes checked journeys but reports one owned coverage concern. Preserve the concern rather than converting it to a clean pass.",
+    "record": {"task_kind": "release", "discovery_complete": true, "risk": "MEDIUM", "gates": [{"name": "Regression Protection", "status": "PASS WITH CONCERNS", "evidence": "regression-evidence-21", "conditions": ["Owner must monitor the unautomated password-reset journey"]}]},
+    "expected": {"activate": true, "status": "PASS WITH CONDITIONS", "risk": "MEDIUM"}
+  },
+  {
+    "id": "E22",
+    "name": "Sibling skill escalation is not pass",
+    "prompt": "Software Design Principles escalates a boundary violation for human decision. CI is green.",
+    "record": {"task_kind": "merge", "discovery_complete": true, "risk": "MEDIUM", "gates": [{"name": "CI", "status": "PASS", "evidence": "run-122"}, {"name": "Software Design Principles", "status": "ESCALATE", "evidence": "design-review-122"}]},
+    "expected": {"activate": true, "status": "BLOCKED", "risk": "MEDIUM", "blocker_codes": ["GATE_ESCALATE"]}
+  }
+]

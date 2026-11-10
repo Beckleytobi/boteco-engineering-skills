@@ -1,0 +1,6 @@
+interface:
+  display_name: "Boteco Requirements Intelligence"
+  short_description: "Validate and baseline software requirements"
+  default_prompt: "Use $boteco-requirements-intelligence to turn this change request into a validated, versioned requirements baseline."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,4 @@
+interface:
+  display_name: "CI/CD Delivery & Pipeline Governance"
+  short_description: "Govern evidence-based, risk-aware software delivery"
+  default_prompt: "Use $ci-cd-delivery-governance to assess this change, pipeline, or release path and determine the evidence and authority required to deliver it safely."

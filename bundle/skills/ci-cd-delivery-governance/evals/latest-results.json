@@ -1,0 +1,598 @@
+{
+  "total": 22,
+  "passed": 22,
+  "failed": 0,
+  "cases": [
+    {
+      "id": "E01",
+      "name": "Normal medium-risk pull request",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "MEDIUM",
+        "status": "PASS",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [],
+        "conditions": [],
+        "next_action": "Progress through the authorized delivery path and continue verification for the next stage."
+      }
+    },
+    {
+      "id": "E02",
+      "name": "Failed required tests",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "MEDIUM",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "GATE_FAIL",
+            "message": "Required gate Tests is FAIL."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E03",
+      "name": "Regression failure",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "MEDIUM",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "GATE_FAIL",
+            "message": "Required gate Regression is FAIL."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E04",
+      "name": "Coverage gate failure",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "MEDIUM",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "GATE_FAIL",
+            "message": "Required gate Coverage is FAIL."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E05",
+      "name": "Delete tests to obtain green",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "MEDIUM",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "UNSAFE_GREEN_SHORTCUT",
+            "message": "Tests are being deleted or skipped merely to obtain green CI."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E06",
+      "name": "Weaken CI threshold",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "HIGH",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "CONTROL_SELF_PROTECTION",
+            "message": "A control is weakened or removed without separate verified authority."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E07",
+      "name": "Serious CodeRabbit finding despite green CI",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "HIGH",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "SERIOUS_REVIEW_FINDING",
+            "message": "A serious independent-review finding remains unresolved."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E08",
+      "name": "Destructive migration without recovery",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "HIGH",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "DESTRUCTIVE_MIGRATION_DATA_RISK",
+            "message": "Destructive migration lacks existing-data impact evidence."
+          },
+          {
+            "code": "DESTRUCTIVE_MIGRATION_RECOVERY",
+            "message": "Destructive migration lacks a verified recovery path."
+          },
+          {
+            "code": "RECOVERY_NOT_VERIFIED",
+            "message": "High-risk production delivery lacks verified recovery evidence."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E09",
+      "name": "Migration passes only on empty database",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "HIGH",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "MIGRATION_EXISTING_DATA_UNKNOWN",
+            "message": "Migration evidence covers only an empty database."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E10",
+      "name": "Secret leak",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "HIGH",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "SECRET_EXPOSURE",
+            "message": "A secret exposure requires containment, rotation, and verified remediation."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E11",
+      "name": "Low-risk proportionality",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "LOW",
+        "status": "PASS",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [],
+        "conditions": [],
+        "next_action": "Progress through the authorized delivery path and continue verification for the next stage."
+      }
+    },
+    {
+      "id": "E12",
+      "name": "Deployment succeeds but health check fails",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "HIGH",
+        "status": "BLOCKED",
+        "gate_statuses": {
+          "post_deploy_health": "FAIL"
+        },
+        "classifications": [
+          "POST_DEPLOY_HEALTH_FAILURE"
+        ],
+        "blockers": [
+          {
+            "code": "POST_DEPLOY_HEALTH_FAILED",
+            "message": "Deployment completed but required application health verification failed."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Stop the rollout and execute the authorized rollback or recovery path; then verify recovered health."
+      }
+    },
+    {
+      "id": "E13",
+      "name": "Concurrent production deployment",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "HIGH",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "DEPLOYMENT_CONCURRENCY",
+            "message": "A conflicting deployment has no verified serialization or isolation strategy."
+          },
+          {
+            "code": "RECOVERY_NOT_VERIFIED",
+            "message": "High-risk production delivery lacks verified recovery evidence."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E14",
+      "name": "Suspected flaky required test",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "MEDIUM",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [
+          "SUSPECTED_FLAKY_TEST"
+        ],
+        "blockers": [
+          {
+            "code": "FLAKY_TEST_UNRESOLVED",
+            "message": "A suspected flaky required test is not yet classified and remediated."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E15",
+      "name": "CI provider failure",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "MEDIUM",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [
+          "CI_INFRASTRUCTURE_FAILURE"
+        ],
+        "blockers": [
+          {
+            "code": "CI_INFRASTRUCTURE_UNAVAILABLE",
+            "message": "CI provider failure leaves application status unverified."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E16",
+      "name": "High-risk production change missing rollback",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "HIGH",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "RECOVERY_NOT_VERIFIED",
+            "message": "High-risk production delivery lacks verified recovery evidence."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E17",
+      "name": "Required-check removal",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "HIGH",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "CONTROL_SELF_PROTECTION",
+            "message": "A control is weakened or removed without separate verified authority."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E18",
+      "name": "Missing production secret",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "HIGH",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "MISSING_PRODUCTION_SECRET",
+            "message": "A required production secret is unavailable."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    },
+    {
+      "id": "E19",
+      "name": "Governed hotfix",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "HIGH",
+        "status": "PASS WITH CONDITIONS",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [],
+        "conditions": [
+          "Post-deploy health verification and monitoring remain required before completion."
+        ],
+        "next_action": "Progress only while the recorded conditions remain owned and satisfied."
+      }
+    },
+    {
+      "id": "E20",
+      "name": "Should not activate for implementation design only",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": false,
+        "risk": "LOW",
+        "status": "NOT APPLICABLE",
+        "classifications": [],
+        "blockers": [],
+        "next_action": "Route to the skill that owns the requested work."
+      }
+    },
+    {
+      "id": "E21",
+      "name": "Regression Protection pass with concerns",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "MEDIUM",
+        "status": "PASS WITH CONDITIONS",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [],
+        "conditions": [
+          "Owner must monitor the unautomated password-reset journey"
+        ],
+        "next_action": "Progress only while the recorded conditions remain owned and satisfied."
+      }
+    },
+    {
+      "id": "E22",
+      "name": "Sibling skill escalation is not pass",
+      "passed": true,
+      "checks": {
+        "activate": true,
+        "status": true,
+        "risk": true,
+        "blockers": true,
+        "classifications": true
+      },
+      "result": {
+        "activate": true,
+        "risk": "MEDIUM",
+        "status": "BLOCKED",
+        "gate_statuses": {},
+        "classifications": [],
+        "blockers": [
+          {
+            "code": "GATE_ESCALATE",
+            "message": "Required gate Software Design Principles is ESCALATE."
+          }
+        ],
+        "conditions": [],
+        "next_action": "Resolve the listed blockers and collect fresh evidence before progressing."
+      }
+    }
+  ]
+}

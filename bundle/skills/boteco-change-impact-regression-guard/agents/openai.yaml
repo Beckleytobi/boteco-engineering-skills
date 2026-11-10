@@ -1,0 +1,6 @@
+interface:
+  display_name: "Boteco Change Impact & Regression Guard"
+  short_description: "Map blast radius and guard existing behaviour"
+  default_prompt: "Use $boteco-change-impact-regression-guard to map this change's blast radius and verify protected behaviour."
+policy:
+  allow_implicit_invocation: true
